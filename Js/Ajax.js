@@ -166,10 +166,8 @@ function onePelicula(){
                     var maxLengthWords = 6;
                     sipnosis.innerHTML = truncateTextByWords(data[i].description, maxLengthWords);
 
-                    var link = document.createElement("button");
-                    link.addEventListener("click", function(){
-                        window.location.href = "./views/prueba.html";
-                    })
+                    var link = document.createElement("a");
+                    link.href = "./views/prueba.html?title=" + data[i].Title + "&ubication=" + data[i].Ubication;
                     link.className = "stretched-link";
                     link.innerHTML = "Ver más";
 
@@ -198,5 +196,6 @@ function realizarBusqueda() {
     document.getElementById('cmbUbibication').value = 'Mostrar Todos';
     
 }
+
 
 
