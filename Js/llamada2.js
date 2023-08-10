@@ -10,9 +10,14 @@
       
         //alert(title);
         //alert(ubication);
+        if (title != null && ubication != null) {
+
+            var url2 = "https://movie.azurewebsites.net/api/cartelera?title=" + title + "&ubication=" + ubication;
+        //
+        }else {
+            var url2 = "https://movie.azurewebsites.net/api/cartelera?title=&ubication=";
+        }
         
-        var url2 = "https://movie.azurewebsites.net/api/cartelera?title=" + title + "&ubication=" + ubication;
-        //var url = "https://movie.azurewebsites.net/api/cartelera?title=&ubication=";
     
         fetch(url2)
         .then(response => response.json())
@@ -23,31 +28,37 @@
             if (data.length > 0) {
                 for(var i = 0; i < data.length; i++){
 
+                    var img = document.createElement("img");
+                    img.className = "card-img-top img-fluid mx-auto d-block";
+                    img.style.maxWidth  = "300px";
+                    img.src = data[i].Poster;
+
                     var div = document.createElement("div");
-                    div.className = "card";
+                    div.className = "card-body";
+                    div.innerHTML = data[i].Year
+
+                    var h5 = document.createElement("h5");
+                    h5.className = "card-title";
+                    h5.innerHTML = data[i].Title;
+
+                    var p = document.createElement("p");
+                    p.className = "card-text mb-auto";
+                    p.innerHTML = data[i].description;
 
                     var div2 = document.createElement("div");
-                    div2.className = "card-body";
-                    div2.innerHTML = "<img src=" + data[i].Poster + " width='300' height='450'>"
+                    div2.className = "mb-1 text-muted";
+                    div2.innerHTML = data[i].Ubication
 
-                    var div3 = document.createElement("h5");
-                    div3.className = "card-title";
-                    div3.innerHTML = data[i].Title;
+                    var strong = document.createElement("strong");
+                    strong.className = "d-inline-block mb-2 text-primary";
+                    strong.innerHTML = data[i].Type
 
-                    var div4 = document.createElement("p");
-                    div4.className = "card-text";
-                    div4.innerHTML = data[i].description;
-
-                    var div5 = document.createElement("p");
-                    div5.className = "card-text";
-                    div5.innerHTML = data[i].Ubication;
-
+                    pelicula.appendChild(img);
+                    div.appendChild(h5);
                     pelicula.appendChild(div);
+                    div.appendChild(p);
                     div.appendChild(div2);
-                    div2.appendChild(div3);
-                    div3.appendChild(div4);
-                    div4.appendChild(div5);
-
+                    div.appendChild(strong);
 
                 }
             }
@@ -57,6 +68,10 @@
     
 
     
+
+}
+
+function putPelicula (){
 
 }
 

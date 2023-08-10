@@ -49,6 +49,11 @@
         </select>
         <br>
         <button onclick="onePelicula()" class="btn btn-primary" type="button">Buscar</button>
+        <br>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          data-bs-whatever="@getbootstrap">Agregar Pelicula</button>
+
       </ul>
       <hr>
     </div>
@@ -92,6 +97,56 @@
                 dy=".3em">Thumbnail</text>
             </svg>
 
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Pelicula</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="id" class="col-form-label">Id:</label>
+                <input type="text" class="form-control" id="id">
+
+                <label for="recipient-name" class="col-form-label">Titulo:</label>
+                <input type="text" class="form-control" id="title">
+
+                <label for="recipient-name" class="col-form-label">Tipo:</label>
+                <input type="text" class="form-control" id="tipo">
+
+                <label for="recipient-name" class="col-form-label">Año:</label>
+                <input type="text" class="form-control" id="year">
+
+                <label for="recipient-name" class="col-form-label">Poster:</label>
+                <input type="text" class="form-control" id="poster">
+
+                <label for="recipient-name" class="col-form-label">Ubicacion</label>
+                <select class="form-select" id="Ubibication" aria-label="Example select with button addon">
+                  <option selected>Mostrar Todos</option>
+                  <option value="Oklan">Oklan</option>
+                  <option value="Miraflores">Miraflores</option>
+                  <option value="POPCINEMA">Popcinema</option>
+                  <option value="Litematica">Litematica</option>
+                  <option value="Mahadas">Majadas</option>
+                  <option value="Chiquimula">Chiquimula</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Descripcion:</label>
+                <textarea class="form-control" id="descripcion"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button onclick="postPelicula()" type="button" class="btn btn-primary">Send message</button>
           </div>
         </div>
       </div>

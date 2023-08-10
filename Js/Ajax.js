@@ -197,5 +197,53 @@ function realizarBusqueda() {
     
 }
 
+function postPelicula() {
+    
+        var id = document.getElementById("id").value;
+        var title = document.getElementById("title").value;
+        var type = document.getElementById("tipo").value;
+        var year = document.getElementById("year").value;
+        var poster = document.getElementById("poster").value;
+        var ubication = document.getElementById("Ubibication").value;
+        var description = document.getElementById("descripcion").value;
+    
+        var url = "https://movie.azurewebsites.net/api/cartelera";
+    
+        var data = {
+            "imdbID": id,
+            "Title": title,
+            "Year": year,
+            "Type": type,
+            "Poster": poster,
+            "description": description,
+            "Ubication": ubication,
+            "Estado": 1
+        }
+
+        console.log(JSON.stringify(data));
+   
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+    
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+
+        document.getElementById("id").value = "";
+        document.getElementById("title").value = "";
+        document.getElementById("tipo").value = "";
+        document.getElementById("year").value = "";
+        document.getElementById("poster").value = "";
+        document.getElementById("Ubibication").value = "";
+        document.getElementById("descripcion").value = "";
+    
+        alert("Pelicula agregada correctamente");
+}
+
 
 
