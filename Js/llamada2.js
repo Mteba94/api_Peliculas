@@ -70,6 +70,8 @@
                     div.appendChild(p);
                     div.appendChild(div2);
                     div.appendChild(strong);
+
+
                     
                     var id = document.getElementById("id").value = data[i].imdbID;
                     var title = document.getElementById("title").value = data[i].Title;
@@ -78,7 +80,7 @@
                     var poster = document.getElementById("poster").value = data[i].Poster;
                     var ubication = document.getElementById("Ubibication").value = data[i].Ubication;
                     var description = document.getElementById("descripcion").value = data[i].description;
-
+                    
                     
                     dataJson.imdbID = id,
                     dataJson.Title = title,
@@ -99,55 +101,72 @@
     
 }
 
-/*
+
   function putPelicula() {
-    
     var url = "https://movie.azurewebsites.net/api/cartelera?imdbID=" + dataJson.imdbID;
 
     console.log(JSON.stringify(dataJson));
-    console.log(url);
+
+    var id = document.getElementById("id").value;
+    var title = document.getElementById("title").value;
+    var type = document.getElementById("tipo").value;
+    var year = document.getElementById("year").value;
+    var poster = document.getElementById("poster").value;
+    var ubication = document.getElementById("Ubibication").value;
+    var description = document.getElementById("descripcion").value;
+
+    datafinal = {
+        "imdbID": id,
+        "Title": title,
+        "Year": year,
+        "Type": type,
+        "Poster": poster,
+        "Estado": dataJson.Estado,
+        "description": description,
+        "Ubication": ubication
+    }
+
+
+
+
+    console.log(JSON.stringify(datafinal));
 
     fetch(url, {
         method: 'PUT',
-        body: JSON.stringify(dataJson),
+        body: JSON.stringify(datafinal),
         headers: {
             'Content-Type': 'application/json'
         }
-
-    }).then(response => response.json())
+    })
+    .then(response => response.json())
         .then(data => {
             console.log(data);
+        
+            if (data.codError === '200') {
+                var modal = new bootstrap.Modal(document.getElementById('modal_actualiza'));
+                modal.hide();
+                // Mostrar mensaje
+                alert('Película actualizada exitosamente');
+                // Recargar la página
+                
+
+                const url = new URL(window.location.href);
+                url.searchParams.set("title", datafinal.Title);
+                history.replaceState(null, null, url.href);
+
+                location.reload();
+
+
+            } else {
+                // Actualización fallida, mostrar mensaje de error u otra acción
+                alert('Error al actualizar la película');
+            }
         })
-        .catch(error => console.log('ERROR', error));
+        .catch(error => {
+            console.error('Error en la solicitud PUT:', error);
+        });
 
-  }
-  */
-
-  function putPelicula() {
-    var url = "https://movie.azurewebsites.net/api/cartelera?imdbID=" + dataJson.imdbID;
-
-    fetch(url, {
-        method: 'PUT',
-        body: JSON.stringify(dataJson),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la solicitud PUT');
-        }
-        // Cerrar el modal
-        var modal = new bootstrap.Modal(document.getElementById('modal_actualiza'));
-        modal.hide();
-        // Mostrar mensaje
-        alert('Película actualizada exitosamente');
-        // Recargar la página
-        location.reload();
-    })
-    .catch(error => {
-        console.log('ERROR', error);
-    });
+        
 
 }
 
@@ -170,7 +189,9 @@ function deletePelicula() {
         // Mostrar mensaje
         alert('Película eliminada exitosamente');
         // Recargar la página
-        location.reload();
+
+        window.location.href = "../index.html";
+       // location.reload();
     })
     .catch(error => {
         console.log('ERROR', error);

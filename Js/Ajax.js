@@ -175,7 +175,7 @@ function onePelicula(){
                     sipnosis.innerHTML = truncateTextByWords(data[i].description, maxLengthWords);
 
                     var link = document.createElement("a");
-                    link.href = "./views/prueba.html?title=" + data[i].Title + "&ubication=" + data[i].Ubication;
+                    link.href = "../Views/prueba.html?title=" + data[i].Title + "&ubication=" + data[i].Ubication;
                     link.className = "stretched-link";
                     link.innerHTML = "Ver más";
 
