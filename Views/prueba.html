@@ -17,7 +17,7 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./Css/Style.css">
+    <link rel="stylesheet" href="../Css/Style.css">
 </head>
 <body>
     
@@ -33,16 +33,22 @@
       </a>
       <hr>
       <ul id="ubicacion" class="nav nav-pills flex-column mb-auto">
-        <a href="../index.html">Inicio</a>
+        <button onclick="window.location.href = '../index.html';" type="button" class="btn btn-primary">
+          Inicio
+        </button>
         <br>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_actualiza"
           data-bs-whatever="@getbootstrap">Actualizar Pelicula</button>
+          <br>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_eliminar">
+            Eliminar Pelicula
+          </button>
       </ul>
       <hr>
     </div>
 
-    <div id="Pelicula2" class="card" style="margin-left: 150px;"">
-      <img src="..." class="card-img-top" alt="...">
+    <div id="Pelicula2" class="content card" >
+      <img  class="card-img-top" alt="...">
       <div class="card-body">
         <strong class="d-inline-block mb-2 text-primary">World</strong>
         <h5 class="card-title">Card title</h5>
@@ -62,11 +68,11 @@
       </div>
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_actualiza" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Pelicula</h1>
+            <h1 class="modal-title fs-5" id="modal_actualizaLabel">Actualizar Pelicula</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -88,25 +94,34 @@
                 <input type="text" class="form-control" id="poster">
 
                 <label for="recipient-name" class="col-form-label">Ubicacion</label>
-                <select class="form-select" id="Ubibication" aria-label="Example select with button addon">
-                  <option selected>Mostrar Todos</option>
-                  <option value="Oklan">Oklan</option>
-                  <option value="Miraflores">Miraflores</option>
-                  <option value="POPCINEMA">Popcinema</option>
-                  <option value="Litematica">Litematica</option>
-                  <option value="Mahadas">Majadas</option>
-                  <option value="Chiquimula">Chiquimula</option>
-                </select>
-              </div>
-              <div class="mb-3">
+                <input type="text" class="form-control" id="Ubibication">
+
                 <label for="message-text" class="col-form-label">Descripcion:</label>
-                <textarea class="form-control" id="descripcion"></textarea>
+                <input type="text" class="form-control" id="descripcion">
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button onclick="postPelicula()" type="button" class="btn btn-primary">Send message</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button onclick="putPelicula()" type="button" class="btn btn-primary">Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal_eliminar" tabindex="-1" aria-labelledby="modal_eliminarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal_eliminarLabel">Eliminar</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ¿Seguro que desea eliminar la pelicula?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button onclick="deletePelicula()" type="button" class="btn btn-primary">Aceptar </button>
           </div>
         </div>
       </div>

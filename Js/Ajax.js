@@ -29,7 +29,7 @@ function peliculaGet(){
 
                     var div5 = document.createElement("div");
                     div5.className = "col-auto d-none d-lg-block";
-                    div5.innerHTML = "<img src=" + data[i].Poster + " width='200' height='250'>"
+                    div5.innerHTML = "<img src=" + data[i].Poster + " width='300' height='250'>"
 
                     var type = document.createElement("strong");
                     type.className = "d-inline-block mb-2 text-primary";
@@ -44,6 +44,10 @@ function peliculaGet(){
                     anio.innerHTML = data[i].Year;
 
                     function truncateTextByWords(text, numWords) {
+
+                        if (!text) {
+                            return ''; // Retorna una cadena vacía si el texto es null o undefined
+                          }
                         // Dividir el texto en palabras
                         var words = text.split(" ");
                         
@@ -130,7 +134,7 @@ function onePelicula(){
 
                     var div5 = document.createElement("div");
                     div5.className = "col-auto d-none d-lg-block";
-                    div5.innerHTML = "<img src=" + data[i].Poster + " width='200' height='250'>"
+                   div5.innerHTML = "<img src=" + data[i].Poster + " width='200' height='250'>"
 
                     var type = document.createElement("strong");
                     type.className = "d-inline-block mb-2 text-primary";
@@ -145,6 +149,10 @@ function onePelicula(){
                     anio.innerHTML = data[i].Year;
 
                     function truncateTextByWords(text, numWords) {
+
+                        if (!text) {
+                            return ''; // Retorna una cadena vacía si el texto es null o undefined
+                          }
                         // Dividir el texto en palabras
                         var words = text.split(" ");
                         
@@ -232,17 +240,18 @@ function postPelicula() {
         }).then(response => response.json())
             .then(data => {
                 console.log(data);
-            })
+                var modalCrear = new bootstrap.Modal(document.getElementById('exampleModalLabel'));
+                modalCrear.hide();
+                // Mostrar mensaje
+                alert("Película agregada exitosamente.");
 
-        document.getElementById("id").value = "";
-        document.getElementById("title").value = "";
-        document.getElementById("tipo").value = "";
-        document.getElementById("year").value = "";
-        document.getElementById("poster").value = "";
-        document.getElementById("Ubibication").value = "";
-        document.getElementById("descripcion").value = "";
-    
-        alert("Pelicula agregada correctamente");
+                location.reload();
+            })
+            .catch(error => {
+                console.error('ERROR', error);
+                alert("Hubo un error al agregar la película.");
+            });
+
 }
 
 
